@@ -39,3 +39,5 @@
 - Local re-verification is currently blocked because the sandbox cannot reach `registry.npmjs.org` (`ENOTFOUND`) and `npm ci` cannot fully restore `node_modules`.
 - Replaced `postcss.config.mjs` plugin-name mapping with direct plugin import (`tailwindcss()`), reducing runtime plugin resolution variance in CI.
 - Removed `@theme inline` from `app/globals.css` to avoid dependence on Tailwind v4-specific PostCSS transforms during build; kept equivalent base styling via standard CSS.
+- Added `.npmrc` optional dependency enforcement (`include=optional`, `optional=true`) so platform-native Lightning CSS bindings are installed in CI.
+- Set `useLightningcss: false` in `next.config.ts` to bypass Lightning CSS native binary loading during Next.js webpack build.
