@@ -23,3 +23,4 @@
 - Verified end-to-end `npm run cf:build -- --skipWranglerConfigCheck` succeeds locally.
 - Split `cf:build` into `npm run build` + OpenNext `--skipNextBuild` to expose true build failures in CI logs.
 - Set `next.config.ts` `output: "standalone"` so OpenNext can find `.next/standalone/.next/server/pages-manifest.json`.
+- Added project `.npmrc` with `include=dev` to force build-time packages (Tailwind/PostCSS/OpenNext tooling) to install in CI even when `NODE_ENV=production`.
