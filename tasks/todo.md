@@ -21,3 +21,5 @@
 - Forced Webpack build and set `NEXT_IGNORE_INCORRECT_LOCKFILE=1` to avoid Turbopack/platform lockfile patch failures in CI.
 - Migrated auth guard from `proxy.ts` (Node-only in Next 16) to `middleware.ts` so OpenNext Cloudflare can bundle Edge middleware.
 - Verified end-to-end `npm run cf:build -- --skipWranglerConfigCheck` succeeds locally.
+- Split `cf:build` into `npm run build` + OpenNext `--skipNextBuild` to expose true build failures in CI logs.
+- Set `next.config.ts` `output: "standalone"` so OpenNext can find `.next/standalone/.next/server/pages-manifest.json`.
