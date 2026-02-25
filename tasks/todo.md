@@ -1,5 +1,15 @@
 # Cloudflare Deployment Minimal Setup
 
+## Current Task (Webpack CSS Failure in CI)
+
+- [x] Confirm current dependency/install configuration that affects PostCSS/Tailwind in CI.
+- [x] Move build-critical tooling (`tailwindcss`, `@tailwindcss/postcss`, OpenNext/Wrangler) to regular dependencies.
+- [x] Regenerate and validate lockfile consistency.
+- [ ] Re-run `npm run build` and `npm run cf:build` to prove the fix locally.
+- [x] Document final root cause + deployment settings in review.
+
+## Previous Completed Work
+
 - [x] Confirm project state and existing deployment config files.
 - [x] Add minimal Cloudflare Worker config (`wrangler.jsonc`) for OpenNext output.
 - [x] Add deploy scripts to `package.json` for Cloudflare build/deploy.
@@ -24,3 +34,6 @@
 - Split `cf:build` into `npm run build` + OpenNext `--skipNextBuild` to expose true build failures in CI logs.
 - Set `next.config.ts` `output: "standalone"` so OpenNext can find `.next/standalone/.next/server/pages-manifest.json`.
 - Added project `.npmrc` with `include=dev` to force build-time packages (Tailwind/PostCSS/OpenNext tooling) to install in CI even when `NODE_ENV=production`.
+- Moved `@opennextjs/cloudflare`, `wrangler`, `tailwindcss`, and `@tailwindcss/postcss` to regular `dependencies` so Cloudflare builds do not rely on dev dependency installation behavior.
+- Regenerated `package-lock.json` to keep `--frozen-lockfile` installs consistent with the updated dependency graph.
+- Local re-verification is currently blocked because the sandbox cannot reach `registry.npmjs.org` (`ENOTFOUND`) and `npm ci` cannot fully restore `node_modules`.
