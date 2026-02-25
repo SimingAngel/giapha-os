@@ -1,3 +1,22 @@
+# Git Push HTTP 400 Fix
+
+## Current Task (Origin Push Rejected)
+
+- [x] Confirm branch divergence and identify oversized/generated files inside the ahead commit.
+- [x] Create a safety backup ref for current `HEAD` before any history rewrite.
+- [x] Rebuild the local commit without generated artifacts (`.open-next`, build outputs, vendored runtime blobs).
+- [x] Verify resulting commit contents and size are source-only.
+- [x] Re-run push to `origin local` and record final outcome.
+
+## Review (Pending)
+
+- Root cause was a single local commit that included 1,387 generated files under `.open-next` and changed `.gitignore` to unignore that directory.
+- Created safety branch `backup_push_20260225_131645` before rewrite.
+- Rewrote local history with `git reset --mixed origin/local`, restored `.gitignore`, and verified branch divergence became `0 0`.
+- Verified final push to `origin` succeeds: `refs/heads/local ... [up to date]`.
+
+---
+
 # Cloudflare Deployment Minimal Setup
 
 ## Current Task (Webpack CSS Failure in CI)
