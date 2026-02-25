@@ -1,3 +1,27 @@
+# Cloudflare Build: Tailwind Oxide Linux Binary
+
+## Current Task (Webpack CSS loader failure in globals.css)
+
+- [x] Confirm whether `@tailwindcss/oxide` Linux binary is missing from lockfile under frozen install.
+- [x] Apply minimal dependency/lockfile change for `@tailwindcss/oxide-linux-x64-gnu`.
+- [x] Validate install resolution with `npm ci --dry-run`.
+- [x] Re-run `npm run build` and `npm run cf:build` locally.
+- [x] Document final root cause and Cloudflare guidance in review.
+
+## Review (Pending)
+
+- Root cause mirrors the prior Lightning CSS issue: lockfile platform skew. `@tailwindcss/oxide` referenced Linux binaries, but `node_modules/@tailwindcss/oxide-linux-x64-gnu` was not materialized in lockfile, so Cloudflare Linux CSS processing could fail under frozen install.
+- Added explicit root optional dependency `@tailwindcss/oxide-linux-x64-gnu@4.2.1` in `package.json` and lockfile root metadata.
+- Added concrete lockfile package entries for:
+  - `node_modules/@tailwindcss/oxide-linux-x64-gnu`
+  - `node_modules/lightningcss-linux-x64-gnu` (kept explicit and corrected after lockfile drift)
+- Validation:
+  - `npm ci --dry-run --prefer-offline --no-audit --no-fund` shows both Linux natives being added.
+  - `npm run build` succeeds.
+  - `npm run cf:build -- --skipWranglerConfigCheck` succeeds.
+
+---
+
 # Cloudflare Build: lightningcss Linux Binary
 
 ## Current Task (Cannot find module lightningcss.linux-x64-gnu.node)

@@ -16,3 +16,4 @@
 ## Platform-Specific Native Dependencies
 
 - For Linux CI/CD with frozen lockfiles, ensure platform-native optional packages required at build time are explicitly represented in both `package.json` and `package-lock.json` (example: `lightningcss-linux-x64-gnu`), even when developing on macOS.
+- Extend the same rule to Tailwind v4 native runtime (`@tailwindcss/oxide-linux-x64-gnu`); missing oxide binaries surface as webpack/PostCSS failures against `app/globals.css`.
