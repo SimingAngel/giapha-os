@@ -5,8 +5,8 @@
   "packageManager": "npm@10.9.4",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "cf:build": "opennextjs-cloudflare build",
+    "build": "NEXT_IGNORE_INCORRECT_LOCKFILE=1 next build --webpack",
+    "cf:build": "NEXT_IGNORE_INCORRECT_LOCKFILE=1 opennextjs-cloudflare build",
     "cf:deploy": "opennextjs-cloudflare deploy",
     "deploy": "npm run cf:build && npm run cf:deploy",
     "start": "next start",

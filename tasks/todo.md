@@ -17,3 +17,7 @@
 - Verified npm frozen-style install compatibility with `npm ci --dry-run`.
 - Added required `open-next.config.ts` to avoid interactive CLI prompt in non-interactive CI.
 - Verified `npm run cf:build` now proceeds past config checks; current local failure is external Google Fonts fetch in this sandbox.
+- Replaced `next/font/google` usage with local/system font stacks to remove build-time dependence on Google Fonts.
+- Forced Webpack build and set `NEXT_IGNORE_INCORRECT_LOCKFILE=1` to avoid Turbopack/platform lockfile patch failures in CI.
+- Migrated auth guard from `proxy.ts` (Node-only in Next 16) to `middleware.ts` so OpenNext Cloudflare can bundle Edge middleware.
+- Verified end-to-end `npm run cf:build -- --skipWranglerConfigCheck` succeeds locally.
