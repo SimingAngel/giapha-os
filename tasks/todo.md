@@ -37,3 +37,5 @@
 - Moved `@opennextjs/cloudflare`, `wrangler`, `tailwindcss`, and `@tailwindcss/postcss` to regular `dependencies` so Cloudflare builds do not rely on dev dependency installation behavior.
 - Regenerated `package-lock.json` to keep `--frozen-lockfile` installs consistent with the updated dependency graph.
 - Local re-verification is currently blocked because the sandbox cannot reach `registry.npmjs.org` (`ENOTFOUND`) and `npm ci` cannot fully restore `node_modules`.
+- Replaced `postcss.config.mjs` plugin-name mapping with direct plugin import (`tailwindcss()`), reducing runtime plugin resolution variance in CI.
+- Removed `@theme inline` from `app/globals.css` to avoid dependence on Tailwind v4-specific PostCSS transforms during build; kept equivalent base styling via standard CSS.
