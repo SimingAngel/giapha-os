@@ -13,3 +13,5 @@
 - Setup is ready for Cloudflare to execute via `npx` in build/deploy commands.
 - Updated scripts to use local binary (`opennextjs-cloudflare`) instead of `npx opennextjs-cloudflare`, which avoids the CI error "could not determine executable to run".
 - Verified command resolution with `npm run cf:build -- --help`.
+- Removed `bun.lock` and pinned `packageManager` to npm so Cloudflare does not auto-select Bun with frozen lockfile checks.
+- Verified npm frozen-style install compatibility with `npm ci --dry-run`.
