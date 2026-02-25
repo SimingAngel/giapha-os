@@ -15,3 +15,5 @@
 - Verified command resolution with `npm run cf:build -- --help`.
 - Removed `bun.lock` and pinned `packageManager` to npm so Cloudflare does not auto-select Bun with frozen lockfile checks.
 - Verified npm frozen-style install compatibility with `npm ci --dry-run`.
+- Added required `open-next.config.ts` to avoid interactive CLI prompt in non-interactive CI.
+- Verified `npm run cf:build` now proceeds past config checks; current local failure is external Google Fonts fetch in this sandbox.
