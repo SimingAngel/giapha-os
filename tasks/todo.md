@@ -11,3 +11,5 @@
 - Added minimal config/scripts required to replace `npx wrangler deploy` with OpenNext Cloudflare deployment flow.
 - Could not install new npm packages in this environment due DNS/network restriction to `registry.npmjs.org`.
 - Setup is ready for Cloudflare to execute via `npx` in build/deploy commands.
+- Updated scripts to use local binary (`opennextjs-cloudflare`) instead of `npx opennextjs-cloudflare`, which avoids the CI error "could not determine executable to run".
+- Verified command resolution with `npm run cf:build -- --help`.
