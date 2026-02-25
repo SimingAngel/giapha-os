@@ -12,3 +12,7 @@
 ## Workflow Discipline
 
 - At the start of each non-trivial task, read `instruction.md` first and immediately write a checkable execution plan to `tasks/todo.md` before code or git changes.
+
+## Platform-Specific Native Dependencies
+
+- For Linux CI/CD with frozen lockfiles, ensure platform-native optional packages required at build time are explicitly represented in both `package.json` and `package-lock.json` (example: `lightningcss-linux-x64-gnu`), even when developing on macOS.

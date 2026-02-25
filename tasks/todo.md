@@ -1,3 +1,23 @@
+# Cloudflare Build: lightningcss Linux Binary
+
+## Current Task (Cannot find module lightningcss.linux-x64-gnu.node)
+
+- [x] Confirm lockfile/platform mismatch for `lightningcss` optional native dependency.
+- [x] Apply minimal dependency/lockfile change so Linux frozen installs include `lightningcss-linux-x64-gnu`.
+- [x] Validate lockfile consistency and dependency resolution commands.
+- [x] Run build verification commands locally and capture any remaining blockers.
+- [x] Document root cause and final Cloudflare setting guidance in review.
+
+## Review (Pending)
+
+- Root cause: `@tailwindcss/postcss` uses `lightningcss`, and Cloudflare Linux build needed `lightningcss-linux-x64-gnu` but the lockfile did not include that package entry under a frozen install.
+- Added root `optionalDependencies.lightningcss-linux-x64-gnu = 1.31.1` in both `package.json` and lockfile root metadata to make Linux native binding explicit.
+- Added `node_modules/lightningcss-linux-x64-gnu` entry in `package-lock.json` so lockfile-driven installs can materialize the binary on Linux.
+- Verified with `npm ci --dry-run` output showing `add lightningcss-linux-x64-gnu 1.31.1`.
+- Verified app still builds locally with `npm run build` (success).
+
+---
+
 # Git Push HTTP 400 Fix
 
 ## Current Task (Origin Push Rejected)
